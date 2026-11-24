@@ -944,7 +944,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
       <h2>KSD SHOP DRAWING 기준 단가표</h2>
       <p class="lead">
         샵드로잉 단가가 어디에도 명확히 정리되어 있지 않아, KSD 기준으로 만든 초안입니다.
-        <b>기본 20,000원/톤</b>을 기준으로 건물 유형과 난이도에 따라 가산하는 구조이며,
+        <b>기본 20,000원/톤</b>부터 시작해 건물 유형과 난이도에 따라 <b>20,000 ~ 60,000원/톤</b> 다섯 구간으로 나눈 구조이며,
         실제 견적은 도면 검토 후 확정합니다.
       </p>
     </div>
@@ -981,7 +981,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
                 <div class="rt-type">근린생활 · 오피스 · 주차타워</div>
                 <div class="rt-desc">층별 마감·개구부 多, 접합부 종류 다양, 마감 협의 필요</div>
               </td>
-              <td class="rt-price">23,000 ~ 26,000<small>난이도별</small></td>
+              <td class="rt-price">30,000<small>표준 단가</small></td>
               <td class="rt-act"><button class="btn btn--soft btn--sm" data-btype="office">이 유형으로 견적</button></td>
             </tr>
             <tr>
@@ -990,7 +990,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
                 <div class="rt-type">복합 · 고층 · 장스팬</div>
                 <div class="rt-desc">HyFo 합성보·CFT 기둥 등 합성구조 포함, 부재 중량·접합 복잡</div>
               </td>
-              <td class="rt-price">27,000 ~ 32,000<small>합성구조 포함</small></td>
+              <td class="rt-price">40,000<small>합성구조 포함</small></td>
               <td class="rt-act"><button class="btn btn--soft btn--sm" data-btype="complex">이 유형으로 견적</button></td>
             </tr>
             <tr>
@@ -999,8 +999,17 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
                 <div class="rt-type">특수 · 비정형 · 트러스 · 플랜트 · 미국 JOB</div>
                 <div class="rt-desc">영문 도면 / AISC 기준, 비정형 절점, 별도 협의 대상</div>
               </td>
-              <td class="rt-price">35,000 ~<small>별도 협의</small></td>
-              <td class="rt-act"><button class="btn btn--soft btn--sm" data-btype="special">이 유형으로 견적</button></td>
+              <td class="rt-price">50,000<small>별도 협의</small></td>
+              <td class="rt-act"><button class="btn btn--soft btn--sm" data-btype="plant">이 유형으로 견적</button></td>
+            </tr>
+            <tr>
+              <td><span class="rt-no">⑤</span></td>
+              <td>
+                <div class="rt-type">증축 (리모델링 · 보강)</div>
+                <div class="rt-desc">기존 구조물 연결·실측 반영, 간섭 검토 및 현장 보강</div>
+              </td>
+              <td class="rt-price">60,000<small>난이도 최상</small></td>
+              <td class="rt-act"><button class="btn btn--soft btn--sm" data-btype="extension">이 유형으로 견적</button></td>
             </tr>
           </tbody>
         </table>
@@ -1025,7 +1034,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
         </div>
         <div class="note-card warn">
           <h4>HyFo · CFT 합성구조</h4>
-          <p>제작사 다이어프램 형식·타설홀·스터드 배치 협의가 필요해 <b>③ 구간 상단</b> 적용이 일반적입니다. 협의 자료 작성은 별도 항목입니다.</p>
+          <p>제작사 다이어프램 형식·타설홀·스터드 배치 협의가 필요해 <b>③ 구간(40,000원/톤)</b> 적용이 일반적입니다. 협의 자료 작성은 별도 항목입니다.</p>
         </div>
         <div class="note-card warn">
           <h4>별도 비용</h4>
@@ -1068,9 +1077,10 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
                 <option value="office">② 근린생활 · 오피스</option>
                 <option value="parking">② 주차타워 (층고·개구부 多)</option>
                 <option value="complex" selected>③ 복합 · 고층 · 장스팬</option>
-                <option value="plant">④ 플랜트 · 특수 · 트러스 (별도 협의)</option>
+                <option value="plant">④ 플랜트 · 특수 · 트러스 · 미국 JOB (별도 협의)</option>
+                <option value="extension">⑤ 증축 · 리모델링 · 보강</option>
               </select>
-              <span class="hint" id="estTypeHint">기준 27,000~32,000원/톤</span>
+              <span class="hint" id="estTypeHint">기준 40,000원/톤</span>
             </div>
 
             <div class="fld">
@@ -1215,7 +1225,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
       </details>
       <details>
         <summary>미국 JOB(영문 도면)도 가능한가요? <span class="plus">+</span></summary>
-        <div class="ans">가능합니다. AISC 기준 표기, 영문 부재명·볼트 등급, RFI 대응까지 포함합니다. ④ 유형으로 분류되어 <b>35,000원/톤~ 별도 협의</b> 구간이며, 도면 매수와 기준(ASD/LRFD, 도면 언어)을 확인한 뒤 확정합니다.</div>
+        <div class="ans">가능합니다. AISC 기준 표기, 영문 부재명·볼트 등급, RFI 대응까지 포함합니다. ④ 유형으로 분류되어 <b>50,000원/톤</b> 기준이며, 도면 매수와 기준(ASD/LRFD, 도면 언어)에 따라 조정 후 확정합니다.</div>
       </details>
       <details>
         <summary>납기는 어느 정도 걸리나요? <span class="plus">+</span></summary>
@@ -1858,10 +1868,11 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
      ============================================================ */
   var BUILDINGS = {
     warehouse: { name: '단순 창고·공장동', rate: [20000, 20000], kgm2: 40, tier: '①' },
-    office: { name: '근린생활·오피스', rate: [23000, 26000], kgm2: 55, tier: '②' },
-    parking: { name: '주차타워', rate: [25000, 26000], kgm2: 65, tier: '②' },
-    complex: { name: '복합·고층·장스팬', rate: [27000, 32000], kgm2: 80, tier: '③' },
-    plant: { name: '플랜트·특수·트러스', rate: [35000, 40000], kgm2: 100, tier: '④' }
+    office: { name: '근린생활·오피스', rate: [30000, 30000], kgm2: 55, tier: '②' },
+    parking: { name: '주차타워', rate: [30000, 30000], kgm2: 65, tier: '②' },
+    complex: { name: '복합·고층·장스팬', rate: [40000, 40000], kgm2: 80, tier: '③' },
+    plant: { name: '플랜트·특수·트러스·미국 JOB', rate: [50000, 50000], kgm2: 100, tier: '④' },
+    extension: { name: '증축·리모델링·보강', rate: [60000, 60000], kgm2: 70, tier: '⑤' }
   };
   var estMode = 'ton';
   var lastQuote = null;
@@ -1879,10 +1890,14 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
     b.addEventListener('click', function () { estModeSet(b.getAttribute('data-mode')); calcQuote(); });
   });
 
+  function rateText(min, max) {
+    return min === max ? nf0.format(min) + '원/톤' : nf0.format(min) + '~' + nf0.format(max) + '원/톤';
+  }
+
   function updateAreaHint() {
     var b = BUILDINGS[$('#estType').value];
     $('#estAreaHint').textContent = '적용 표준 철골량 ' + b.kgm2 + ' kg/㎡ (가정치)';
-    $('#estTypeHint').textContent = '기준 ' + nf0.format(b.rate[0]) + '~' + nf0.format(b.rate[1]) + '원/톤';
+    $('#estTypeHint').textContent = '기준 ' + rateText(b.rate[0], b.rate[1]);
   }
 
   ['estType', 'estTons', 'estArea', 'estComposite', 'estModel', 'estUrgent', 'estUs'].forEach(function (id) {
@@ -1904,7 +1919,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
     var rMin = b.rate[0], rMax = b.rate[1];
     if (composite) { rMin *= 1.08; rMax *= 1.08; }
     if (model) { rMin *= 1.10; rMax *= 1.10; }
-    if (us) { rMin = Math.max(rMin, 35000); rMax = Math.max(rMax, rMin * 1.12); }
+    if (us) { rMin = Math.max(rMin, 50000); rMax = Math.max(rMax, rMin); }
     if (urgent) { rMin *= 1.15; rMax *= 1.15; }
 
     var low = tons * rMin, high = tons * rMax;
@@ -1929,6 +1944,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
     // 체크사항
     var checks = [];
     if (composite) checks.push('HyFo 합성보·CFT 기둥은 다이어프램 형식과 타설·배출 홀 위치를 제작사와 먼저 협의해야 합니다.');
+    if (b.tier === '⑤') checks.push('증축·리모델링은 기존 구조물 실측값과 현장 간섭(설비·마감) 검토가 필요합니다. 기존 도면·부재 확인 여부에 따라 물량이 달라집니다.');
     if (us) checks.push('미국 JOB은 기준(ASD/LRFD), 영문 부재명, 볼트 등급 표기를 도면에서 확인해야 합니다.');
     if (urgent) checks.push('긴급 납기는 투입 인력·야간 작업 여부에 따라 단가가 다시 조정됩니다.');
     if (smallJob) checks.push('10톤 미만 소량으로 최소 기본료가 적용되었습니다.');
@@ -1950,7 +1966,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
       : nf0.format(low) + '원 ~ ' + nf0.format(high) + '원 · VAT 별도';
     $('#qTons').textContent = nf1.format(tons) + ' ton';
     $('#qTons').innerHTML = nf1.format(tons) + ' ton' + (estMode === 'area' ? '<small>연면적 ' + nf0.format(num($('#estArea').value)) + '㎡ × ' + b.kgm2 + 'kg/㎡</small>' : '<small>' + b.name + ' ' + b.tier + '</small>');
-    $('#qRate').innerHTML = nf0.format(Math.round(rMin)) + ' ~ ' + nf0.format(Math.round(rMax)) + ' 원/톤<small>' + b.name + ' 기준' + (urgent ? ' · 긴급 +15%' : '') + '</small>';
+    $('#qRate').innerHTML = (rMin === rMax ? nf0.format(Math.round(rMin)) + ' 원/톤' : nf0.format(Math.round(rMin)) + ' ~ ' + nf0.format(Math.round(rMax)) + ' 원/톤') + '<small>' + b.name + ' 기준' + (urgent ? ' · 긴급 +15%' : '') + '</small>';
     $('#qDays').innerHTML = period(dLow, dHigh) + '<small>1인 1일 12~18톤 가정' + (urgent ? ' · 긴급 단축' : '') + '</small>';
     $('#qDeliver').textContent = deliver;
     $('#qChecks').innerHTML = checks.map(function (c) { return '<li>' + c + '</li>'; }).join('');
@@ -1978,7 +1994,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
       '건물 유형 : ' + q.building + ' (' + q.tier + ')',
       (q.mode === 'area' ? '연면적 : ' + nf0.format(q.area) + ' ㎡' : ''),
       '적용 물량 : ' + nf1.format(q.tons) + ' ton',
-      '적용 단가 : ' + nf0.format(q.rMin) + ' ~ ' + nf0.format(q.rMax) + ' 원/톤',
+      '적용 단가 : ' + (q.rMin === q.rMax ? nf0.format(q.rMin) + ' 원/톤' : nf0.format(q.rMin) + ' ~ ' + nf0.format(q.rMax) + ' 원/톤'),
       '옵션 : ' + (q.opts || '기본'),
       '산출물 : ' + q.deliver,
       '예상 견적 : ' + nf0.format(q.low) + ' ~ ' + nf0.format(q.high) + ' 원 (VAT 별도)',
@@ -2014,6 +2030,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
   $$('[data-btype]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var t = btn.getAttribute('data-btype');
+      if (!BUILDINGS[t]) return;
       $('#estType').value = t;
       updateAreaHint();
       $('#estimate').scrollIntoView({ behavior: 'smooth', block: 'start' });
