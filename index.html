@@ -239,6 +239,7 @@ input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
 .qcard--res .qk{color:#b4691f}
 .qcard--res::after{background:#fff1e0}
 .header-cta.is-active{background:var(--steel-d);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.nav a.nav-contact{display:none}
 
 /* ---------- cards / about ---------- */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -708,6 +709,8 @@ body.res-lock{overflow:hidden}
     background:#fff;border-bottom:1px solid var(--line);padding:10px 16px 16px;box-shadow:var(--shadow);margin:0;
   }
   .nav.open a{padding:12px 12px;font-size:15px}
+  .nav.open a.nav-contact{display:flex;justify-content:center;margin-top:6px;background:var(--steel);color:#fff;font-weight:800}
+  .nav.open a.nav-contact:hover,.nav.open a.nav-contact.is-active{background:var(--steel-d);color:#fff}
   .cards{grid-template-columns:repeat(2,1fr)}
   .process{grid-template-columns:repeat(2,1fr)}
   .process li{border-bottom:1px solid var(--line)}
@@ -840,6 +843,7 @@ body.res-lock{overflow:hidden}
       <a href="#resources">자료실</a>
       <a href="#projects">실적</a>
       <a href="#faq">FAQ</a>
+      <a class="nav-contact" href="#contact">견적 문의</a>
     </nav>
     <span class="draft-chip" title="1차 시안 문서입니다"><i></i><span>1차 시안 v0.1</span></span>
     <a class="btn btn--primary btn--sm header-cta" id="headerCta" href="#contact">견적 문의</a>
