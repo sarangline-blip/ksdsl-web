@@ -446,6 +446,178 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
   .reveal{opacity:1;transform:none;transition:none}
   .dim-line{animation:none;stroke-dashoffset:0}
   .card:hover,.btn:hover,.proj:hover{transform:none}
+  .res-float,.res-heart,.res-heart:hover .rh-under{animation:none;transform:rotate(var(--tilt))}
+}
+
+/* ---------- resource center ---------- */
+.section--res{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(820px 380px at 10% 4%,#ffffff 0%,rgba(255,255,255,0) 62%),
+    radial-gradient(720px 520px at 90% 16%,#e9f2ff 0%,rgba(233,242,255,0) 66%),
+    linear-gradient(180deg,#f8fbff,#edf4fd 72%,#f6faff);
+  border-top:1px solid #e3edf9;border-bottom:1px solid #dfe9f5;
+}
+.section--res::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(to right,rgba(21,101,192,.055) 1px,transparent 1px),
+                   linear-gradient(to bottom,rgba(21,101,192,.055) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(1000px 620px at 48% 44%,#000 26%,transparent 78%);
+  -webkit-mask-image:radial-gradient(1000px 620px at 48% 44%,#000 26%,transparent 78%);
+}
+.section--res > .wrap{position:relative;z-index:1}
+.res-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+.res-top .sec-head{margin-bottom:0}
+.res-admin-btn{
+  border:1px solid #ccdae9;background:rgba(255,255,255,.78);color:#54677d;
+  font-size:12.5px;font-weight:700;padding:8px 13px;border-radius:99px;white-space:nowrap;
+  transition:.18s;margin-bottom:4px;
+}
+.res-admin-btn:hover{border-color:var(--steel-b);color:var(--steel-d);background:#fff}
+body.res-admin .res-admin-btn{color:var(--steel-d);border-color:var(--steel-b);background:var(--steel-l)}
+
+.res-sky{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px 12px;align-items:center}
+.res-slot{display:flex;justify-content:center;min-width:0}
+.res-slot--lisp{grid-column:2 / span 2;grid-row:1}
+.res-slot--photo{grid-column:4 / span 2;grid-row:1;margin-top:56px}
+.res-slot--tekla{grid-column:1 / span 2;grid-row:2;margin-top:-10px}
+.res-slot--cad{grid-column:3 / span 2;grid-row:2}
+.res-slot--shop{grid-column:1 / span 2;grid-row:3;margin-top:-16px}
+
+.res-float{display:inline-flex;justify-content:center;animation:resFloat 7.6s ease-in-out infinite}
+.res-slot--lisp .res-float{animation-delay:-1.2s}
+.res-slot--photo .res-float{animation-duration:8.8s;animation-delay:-3.4s}
+.res-slot--tekla .res-float{animation-duration:8.2s;animation-delay:-5.1s}
+.res-slot--cad .res-float{animation-duration:7.2s;animation-delay:-2.2s}
+.res-slot--shop .res-float{animation-duration:9s;animation-delay:-4.2s}
+@keyframes resFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+
+.res-heart{
+  --tilt:0deg;position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;
+  width:clamp(176px,16.6vw,226px);background:none;border:0;padding:0;color:inherit;text-align:center;
+  transform:rotate(var(--tilt));transition:transform .3s cubic-bezier(.2,.8,.2,1);
+}
+.res-slot--cad .res-heart{width:clamp(194px,18.4vw,252px)}
+.res-slot--shop .res-heart{width:clamp(172px,16vw,216px)}
+.res-slot--photo .res-heart{width:clamp(150px,14.4vw,196px)}
+.res-heart:hover{transform:rotate(var(--tilt)) scale(1.045)}
+.res-heart:active{transform:rotate(var(--tilt)) scale(.99)}
+.rh-art{display:block;width:100%;height:auto;overflow:visible;transition:.25s}
+.rh-art--balloon{overflow:visible}
+.rh-body,.rh-knot{
+  stroke:#2f6fb5;stroke-width:2.6;stroke-linejoin:round;
+  filter:drop-shadow(0 12px 18px rgba(21,101,192,.16));
+  transition:filter .25s,stroke .25s;
+}
+.res-heart:hover .rh-body,.res-heart:hover .rh-knot{filter:drop-shadow(0 18px 30px rgba(21,101,192,.34));stroke:#14509b}
+.rh-seam{fill:none;stroke:#9dc0e8;stroke-width:1.3;stroke-dasharray:5 7;opacity:.8}
+.rh-label{font-family:var(--mono);font-weight:700;fill:#0d47a1;letter-spacing:.06em}
+.rh-label--kr{font-family:var(--ff);font-weight:800;letter-spacing:-.02em}
+.rh-sub{font-family:var(--mono);font-weight:700;fill:#9a5a13;opacity:.7}
+.rh-under{fill:none;stroke:#2f6fb5;stroke-width:2;stroke-linecap:round;opacity:.5;transition:.2s}
+.res-heart:hover .rh-under{opacity:.95;stroke-dasharray:3 4;animation:rhDash .6s linear infinite}
+@keyframes rhDash{to{stroke-dashoffset:-14}}
+.rh-string{fill:none;stroke:#b4691f;stroke-width:1.8;stroke-linecap:round;opacity:.65}
+.rh-count{
+  position:absolute;top:3%;right:5%;background:#fff;border:1px solid var(--steel-b);
+  color:var(--steel-d);font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;
+  box-shadow:0 4px 10px -6px rgba(21,101,192,.55);font-variant-numeric:tabular-nums;
+  transition:.2s;z-index:2;
+}
+.res-heart--balloon .rh-count{border-color:#f0cfae;color:#a15c16}
+.res-heart:hover .rh-count{transform:translateY(-2px);box-shadow:0 8px 14px -8px rgba(21,101,192,.6)}
+.rh-cap{font-size:12px;font-weight:700;color:#5c7189;letter-spacing:-.01em;line-height:1.4;padding:0 4px;transition:.2s}
+.res-heart:hover .rh-cap{color:var(--steel-d)}
+
+.res-guide{
+  grid-column:5 / span 2;grid-row:2 / span 2;align-self:center;justify-self:start;margin-left:6px;
+  width:100%;max-width:310px;background:rgba(255,255,255,.82);border:1px solid #dbe7f5;border-radius:16px;
+  padding:22px 22px 20px;box-shadow:0 24px 44px -34px rgba(13,71,161,.55);
+  backdrop-filter:blur(6px);
+}
+.rg-k{font-size:10.5px;letter-spacing:.18em;font-weight:800;color:var(--steel);margin-bottom:8px}
+.res-guide h3{font-size:17px;line-height:1.42;margin-bottom:14px}
+.res-guide ul{display:grid;gap:11px;margin-bottom:16px}
+.res-guide li{font-size:12.4px;color:var(--ink-2);line-height:1.55;padding-left:18px;position:relative}
+.res-guide li::before{content:"";position:absolute;left:2px;top:.5em;width:7px;height:7px;border:1.5px solid var(--steel);border-radius:50%}
+.res-guide li b{color:var(--ink);display:block;font-size:12.7px;margin-bottom:1px}
+.rg-total{display:flex;align-items:baseline;gap:7px;border-top:1px dashed #cfdeee;padding-top:12px}
+.rg-total b{font-size:24px;color:var(--steel-d);letter-spacing:-.02em;line-height:1}
+.rg-total span{font-size:11.5px;color:var(--muted)}
+
+/* modal */
+.res-modal{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:22px}
+.res-backdrop{position:absolute;inset:0;background:rgba(9,20,38,.5);backdrop-filter:blur(3px);animation:resFade .2s ease}
+@keyframes resFade{from{opacity:0}to{opacity:1}}
+.res-sheet{
+  position:relative;width:min(680px,100%);max-height:min(86vh,780px);display:flex;flex-direction:column;
+  background:#fff;border-radius:16px;box-shadow:0 40px 90px -40px rgba(2,10,25,.65);overflow:hidden;
+  animation:resSheet .24s ease;
+}
+.res-sheet--admin{width:min(720px,100%)}
+@keyframes resSheet{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}
+.res-sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:20px 22px 16px;border-bottom:1px solid var(--line);flex:none}
+.rsh-id{display:flex;gap:12px;align-items:center;min-width:0}
+.rsh-heart{font-size:24px;line-height:1;flex:none}
+.res-sheet-head h3{font-size:18px;line-height:1.3}
+.res-sheet-head p{font-size:12px;color:var(--muted);margin-top:2px}
+.res-x{border:1px solid var(--line);background:#fff;border-radius:50%;width:32px;height:32px;font-size:13px;color:var(--muted);flex:none;display:flex;align-items:center;justify-content:center;line-height:1}
+.res-x:hover{background:var(--bg-soft);color:var(--ink)}
+.res-sheet-body{padding:16px 22px;overflow:auto;flex:1;min-height:0}
+.res-sheet-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 22px;border-top:1px solid var(--line);background:#fbfdff;flex-wrap:wrap;flex:none}
+
+.res-list{display:grid;gap:10px}
+.res-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff}
+.res-item:hover{border-color:#cfe0f3;background:#fbfdff}
+.ri-ico{width:44px;height:44px;border-radius:9px;background:var(--steel-l);color:var(--steel-d);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:800;flex:none;text-transform:uppercase;letter-spacing:.02em}
+.ri-thumb{width:58px;height:44px;border-radius:8px;overflow:hidden;border:1px solid var(--line);flex:none;background:#f1f5f9;padding:0}
+.ri-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.ri-main{min-width:0}
+.ri-title{font-size:14px;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap;line-height:1.35;word-break:break-all}
+.ri-title small{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--steel-d);background:var(--steel-l);padding:1px 6px;border-radius:4px;letter-spacing:.02em}
+.ri-desc{font-size:12.4px;color:var(--ink-2);margin-top:3px;line-height:1.5}
+.ri-meta{font-size:11px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
+.ri-acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.ri-del{border:1px solid #f3c7c7;background:#fff5f5;color:#b91c1c;font-size:11.5px;font-weight:700;border-radius:6px;padding:6px 9px;line-height:1.2}
+.ri-del:hover{background:#fee2e2}
+.res-empty{padding:36px 16px;text-align:center;color:var(--muted);font-size:13px;border:1px dashed #d6e2f0;border-radius:10px;background:#fbfdff;line-height:1.75}
+.res-empty b{color:var(--ink-2)}
+
+/* admin */
+.res-auth-note{font-size:12.2px;color:#7c4a03;background:#fff8ee;border:1px solid #fbd9ab;border-radius:9px;padding:10px 12px;line-height:1.6}
+.res-steps{display:grid;gap:12px;margin:16px 0 18px;counter-reset:rs}
+.res-steps li{position:relative;padding-left:34px;font-size:12.9px;color:var(--ink-2);line-height:1.62}
+.res-steps li::before{counter-increment:rs;content:counter(rs);position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;background:var(--steel-l);color:var(--steel-d);font-size:11.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.res-steps li b{color:var(--ink)}
+.res-steps li span{display:block;color:var(--muted);font-size:11.8px;margin-top:2px}
+.res-steps code{font-family:var(--mono);font-size:11.5px;background:var(--bg-slate);padding:1px 5px;border-radius:4px;word-break:break-all}
+.res-auth-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.res-status{font-size:12px;margin-top:10px;min-height:18px;color:var(--ink-2);line-height:1.55}
+.res-status.is-err{color:var(--red)}
+.res-status.is-ok{color:var(--green)}
+.res-admin-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+.res-chip{font-family:var(--mono);font-size:11px;background:#0f172a;color:#e2e8f0;padding:3px 8px;border-radius:5px}
+.res-admin-state{font-size:11.5px;color:var(--green);font-weight:700}
+.res-admin-bar #resLogout{margin-left:auto}
+.res-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.res-drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1.5px dashed #bfd3ea;border-radius:12px;background:#f8fbff;padding:22px 14px;margin-top:14px;cursor:pointer;text-align:center;transition:.15s}
+.res-drop:hover,.res-drop.is-over{border-color:var(--steel);background:var(--steel-l)}
+.rd-ico{font-size:20px;line-height:1}
+.rd-txt{font-size:12.5px;color:var(--ink-2);font-weight:600}
+.rd-file{color:var(--steel-d);font-weight:800;word-break:break-all}
+.res-inline-chk{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--muted);margin-top:12px;cursor:pointer;line-height:1.5}
+.res-inline-chk input{accent-color:var(--steel);flex:none;margin:0}
+.res-upload-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+.res-lightbox{position:fixed;inset:0;z-index:130;background:rgba(6,12,24,.88);display:flex;align-items:center;justify-content:center;padding:26px}
+.res-lightbox img{max-width:94vw;max-height:88vh;border-radius:8px;box-shadow:0 30px 60px -20px #000}
+.res-lb-x{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.92)}
+body.res-lock{overflow:hidden}
+@media (prefers-reduced-motion:reduce){
+  .res-float{animation:none !important}
+  .res-heart{transition:none}
+  .res-heart:hover{transform:rotate(var(--tilt))}
+  .res-heart:hover .rh-under{animation:none}
 }
 
 /* ---------- responsive ---------- */
@@ -454,6 +626,19 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
   .bom{position:static}
   .est-layout,.contact-layout{grid-template-columns:minmax(0,1fr)}
   .est-result{position:static}
+  .header-in{gap:14px}
+  .nav a{padding:9px 9px;font-size:13.5px}
+  .draft-chip{display:none}
+  .res-sky{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .res-slot--lisp{grid-column:1 / span 2;grid-row:1}
+  .res-slot--photo{grid-column:3 / span 2;grid-row:1;margin-top:30px}
+  .res-slot--tekla{grid-column:1 / span 2;grid-row:2;margin-top:0}
+  .res-slot--cad{grid-column:3 / span 2;grid-row:2}
+  .res-slot--shop{grid-column:1 / span 2;grid-row:3;margin-top:0}
+  .res-guide{grid-column:3 / span 2;grid-row:3;justify-self:center;margin-left:0}
+  .res-heart{width:clamp(158px,21vw,214px)}
+  .res-slot--cad .res-heart{width:clamp(170px,23vw,236px)}
+  .res-slot--photo .res-heart{width:clamp(136px,18vw,184px)}
 }
 @media (max-width:940px){
   .hero-in{grid-template-columns:1fr;gap:34px;padding:56px 0 44px}
@@ -527,6 +712,20 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
   table.rate .rt-desc{margin-top:3px}
   .rate-wrap{overflow-x:visible}
   .hero-in{padding:44px 0 36px}
+  .res-top{align-items:flex-start;margin-bottom:22px}
+  .res-sky{grid-template-columns:minmax(0,1fr);gap:10px}
+  .res-slot{grid-column:1 !important;grid-row:auto !important;margin:0 !important}
+  .res-guide{grid-column:1 !important;grid-row:auto !important;max-width:none;margin-top:16px}
+  .res-heart{width:min(64vw,224px)}
+  .res-slot--cad .res-heart{width:min(68vw,238px)}
+  .res-slot--photo .res-heart{width:min(50vw,176px)}
+  .res-sheet-body{padding:14px 16px}
+  .res-sheet-head{padding:16px}
+  .res-sheet-foot{padding:10px 16px}
+  .res-item{grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;row-gap:8px;padding:12px}
+  .ri-acts{grid-column:1 / -1;justify-content:flex-start}
+  .res-form-grid{grid-template-columns:1fr}
+  .res-admin-bar #resLogout{margin-left:0}
 }
 @media (max-width:420px){
   .hero-stats{grid-template-columns:1fr 1fr}
@@ -546,7 +745,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
 @media print{
   @page{margin:14mm}
   .reveal{opacity:1 !important;transform:none !important;transition:none !important}
-  .site-header,.site-footer,.to-top,.toast,.nav,.hero,.hero-figure,.hero-actions,.no-print{display:none !important}
+  .site-header,.site-footer,.to-top,.toast,.nav,.hero,.hero-figure,.hero-actions,.no-print,.res-admin-btn,.res-modal,.res-lightbox{display:none !important}
   body{font-size:10.5pt;color:#000;background:#fff}
   .section{padding:14px 0;break-inside:avoid}
   .section--soft{background:#fff;border:0}
@@ -585,6 +784,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
       <a href="#catalog">카탈로그·계산기</a>
       <a href="#rates">단가표</a>
       <a href="#estimate">AI 견적</a>
+      <a href="#resources">자료실</a>
       <a href="#project">실적</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -1162,6 +1362,124 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
   </div>
 </section>
 
+<!-- ============ RESOURCES ============ -->
+<section class="section section--res" id="resources">
+  <div class="wrap">
+    <div class="res-top">
+      <div class="sec-head reveal">
+        <span class="kicker">KSDSL RESOURCE CENTER</span>
+        <h2>하트를 톡, 자료를 쏙 — KSDSL 자료실</h2>
+        <p class="lead">
+          리습·Tekla 속성·CAD 설정·샵도면 샘플·현장 사진을 분류별로 모았습니다.
+          하트와 풍선을 누르면 필요한 파일을 <b>회원가입 없이 바로</b> 받아 갈 수 있습니다.
+        </p>
+      </div>
+      <button class="res-admin-btn" id="resAdminBtn" type="button" aria-haspopup="dialog">🔐 관리자 업로드</button>
+    </div>
+
+    <div class="res-sky">
+      <!-- LISP -->
+      <div class="res-slot res-slot--lisp">
+        <div class="res-float">
+          <button class="res-heart" type="button" data-cat="lisp" style="--tilt:-3deg">
+            <svg class="rh-art" viewBox="0 0 220 200" aria-hidden="true" focusable="false">
+              <defs><linearGradient id="rhg-lisp" x1="0" y1="0" x2=".2" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#f2f8ff"/><stop offset="1" stop-color="#dcecff"/></linearGradient></defs>
+              <path class="rh-body" fill="url(#rhg-lisp)" d="M110 184C110 184 22 128 22 68 22 38 43 18 68 18c20 0 35 11 42 24 7-13 22-24 42-24 25 0 46 20 46 50 0 60-88 116-88 116Z"/>
+              <path class="rh-seam" transform="translate(110 101) scale(.84) translate(-110 -101)" d="M110 184C110 184 22 128 22 68 22 38 43 18 68 18c20 0 35 11 42 24 7-13 22-24 42-24 25 0 46 20 46 50 0 60-88 116-88 116Z"/>
+              <text class="rh-label" x="110" y="99" text-anchor="middle" font-size="27">LISP</text>
+              <path class="rh-under" d="M82 113q28 6 56 0"/>
+            </svg>
+            <span class="rh-count" data-count="lisp">0개</span>
+            <span class="rh-cap">AutoCAD 리습 · 자동화</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 사진 (풍선) -->
+      <div class="res-slot res-slot--photo">
+        <div class="res-float">
+          <button class="res-heart res-heart--balloon" type="button" data-cat="photo" style="--tilt:3.5deg">
+            <svg class="rh-art rh-art--balloon" viewBox="0 0 200 270" aria-hidden="true" focusable="false">
+              <defs><linearGradient id="rhg-photo" x1="0" y1="0" x2=".7" y2="1"><stop offset="0" stop-color="#fff8f0"/><stop offset=".55" stop-color="#ffe8cf"/><stop offset="1" stop-color="#ffd3ae"/></linearGradient></defs>
+              <path class="rh-string" d="M100 163c-7 24 9 38 2 58-5 15 1 25 5 33"/>
+              <path class="rh-body" fill="url(#rhg-photo)" d="M100 12c33 0 58 28 58 66 0 38-26 74-58 88-32-14-58-50-58-88 0-38 25-66 58-66Z"/>
+              <path class="rh-knot" fill="url(#rhg-photo)" d="M100 160l-8 12h16z"/>
+              <text class="rh-label rh-label--kr" x="100" y="92" text-anchor="middle" font-size="30">사진</text>
+              <text class="rh-sub" x="100" y="114" text-anchor="middle" font-size="9" letter-spacing="2.4">PHOTO</text>
+            </svg>
+            <span class="rh-count" data-count="photo">0개</span>
+            <span class="rh-cap">현장 · 제작 · 접합부</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- TEKLA -->
+      <div class="res-slot res-slot--tekla">
+        <div class="res-float">
+          <button class="res-heart" type="button" data-cat="tekla" style="--tilt:-5deg">
+            <svg class="rh-art" viewBox="0 0 220 200" aria-hidden="true" focusable="false">
+              <defs><linearGradient id="rhg-tekla" x1="0" y1="0" x2=".2" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#f4f8ff"/><stop offset="1" stop-color="#e2edfd"/></linearGradient></defs>
+              <path class="rh-body" fill="url(#rhg-tekla)" d="M110 184C110 184 22 128 22 68 22 38 43 18 68 18c20 0 35 11 42 24 7-13 22-24 42-24 25 0 46 20 46 50 0 60-88 116-88 116Z"/>
+              <path class="rh-seam" transform="translate(110 101) scale(.84) translate(-110 -101)" d="M110 184C110 184 22 128 22 68 22 38 43 18 68 18c20 0 35 11 42 24 7-13 22-24 42-24 25 0 46 20 46 50 0 60-88 116-88 116Z"/>
+              <text class="rh-label" x="110" y="99" text-anchor="middle" font-size="24">TEKLA</text>
+              <path class="rh-under" d="M78 113q32 6 64 0"/>
+            </svg>
+            <span class="rh-count" data-count="tekla">0개</span>
+            <span class="rh-cap">속성 · 컴포넌트 · BOM</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CAD -->
+      <div class="res-slot res-slot--cad">
+        <div class="res-float">
+          <button class="res-heart" type="button" data-cat="cad" style="--tilt:2deg">
+            <svg class="rh-art" viewBox="0 0 220 200" aria-hidden="true" focusable="false">
+              <defs><linearGradient id="rhg-cad" x1="0" y1="0" x2=".2" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#f1f7ff"/><stop offset="1" stop-color="#d8eaff"/></linearGradient></defs>
+              <path class="rh-body" fill="url(#rhg-cad)" d="M110 184C110 184 22 128 22 68 22 38 43 18 68 18c20 0 35 11 42 24 7-13 22-24 42-24 25 0 46 20 46 50 0 60-88 116-88 116Z"/>
+              <path class="rh-seam" transform="translate(110 101) scale(.84) translate(-110 -101)" d="M110 184C110 184 22 128 22 68 22 38 43 18 68 18c20 0 35 11 42 24 7-13 22-24 42-24 25 0 46 20 46 50 0 60-88 116-88 116Z"/>
+              <text class="rh-label" x="110" y="102" text-anchor="middle" font-size="31">CAD</text>
+              <path class="rh-under" d="M86 116q24 6 48 0"/>
+            </svg>
+            <span class="rh-count" data-count="cad">0개</span>
+            <span class="rh-cap">팁 · 설정 · 템플릿</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SHOP DWG -->
+      <div class="res-slot res-slot--shop">
+        <div class="res-float">
+          <button class="res-heart" type="button" data-cat="shop" style="--tilt:-6deg">
+            <svg class="rh-art" viewBox="0 0 220 200" aria-hidden="true" focusable="false">
+              <defs><linearGradient id="rhg-shop" x1="0" y1="0" x2=".2" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#f4f7fb"/><stop offset="1" stop-color="#e4ebf4"/></linearGradient></defs>
+              <path class="rh-body" fill="url(#rhg-shop)" d="M110 184C110 184 22 128 22 68 22 38 43 18 68 18c20 0 35 11 42 24 7-13 22-24 42-24 25 0 46 20 46 50 0 60-88 116-88 116Z"/>
+              <path class="rh-seam" transform="translate(110 101) scale(.84) translate(-110 -101)" d="M110 184C110 184 22 128 22 68 22 38 43 18 68 18c20 0 35 11 42 24 7-13 22-24 42-24 25 0 46 20 46 50 0 60-88 116-88 116Z"/>
+              <text class="rh-label" x="110" y="88" text-anchor="middle" font-size="21">SHOP</text>
+              <text class="rh-label" x="110" y="114" text-anchor="middle" font-size="21">DWG</text>
+              <path class="rh-under" d="M88 126q22 5 44 0"/>
+            </svg>
+            <span class="rh-count" data-count="shop">0개</span>
+            <span class="rh-cap">샘플도면 · 협의자료</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 안내 -->
+      <aside class="res-guide">
+        <div class="rg-k">RESOURCE INDEX</div>
+        <h3>필요한 자료를<br>하트에서 꺼내 가세요</h3>
+        <ul>
+          <li><b>바로 다운로드</b>회원가입 없이 파일을 받을 수 있습니다.</li>
+          <li><b>리습 사용법</b>AutoCAD에서 APPLOAD → 파일 선택 → 명령어 입력.</li>
+          <li><b>자료 요청</b>없는 자료는 문의로 남겨 주시면 정리해 올립니다.</li>
+        </ul>
+        <div class="rg-total"><b id="resTotal">0</b><span>개 자료 · <span id="resUpdated">—</span> 기준</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PROJECT ============ -->
 <section class="section" id="project">
   <div class="wrap">
@@ -1341,6 +1659,114 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
     </div>
   </div>
 </footer>
+
+<!-- ============ RESOURCE MODALS ============ -->
+<div class="res-modal" id="resCatModal" hidden>
+  <div class="res-backdrop" data-res-close></div>
+  <div class="res-sheet" role="dialog" aria-modal="true" aria-labelledby="resCatTitle">
+    <div class="res-sheet-head">
+      <div class="rsh-id">
+        <span class="rsh-heart" id="resCatIcon" aria-hidden="true">❤</span>
+        <div>
+          <h3 id="resCatTitle">LISP</h3>
+          <p id="resCatSub">AutoCAD 리습 · 자동화 명령어</p>
+        </div>
+      </div>
+      <button class="res-x" type="button" data-res-close aria-label="닫기">✕</button>
+    </div>
+    <div class="res-sheet-body">
+      <div class="res-list" id="resList"></div>
+    </div>
+    <div class="res-sheet-foot">
+      <span class="tiny muted" id="resCatNote">자료는 사장님이 직접 정리해 올립니다.</span>
+      <button class="btn btn--ghost btn--sm" type="button" data-res-close>닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="res-modal" id="resAdminModal" hidden>
+  <div class="res-backdrop" data-admin-close></div>
+  <div class="res-sheet res-sheet--admin" role="dialog" aria-modal="true" aria-labelledby="resAdminTitle">
+    <div class="res-sheet-head">
+      <div class="rsh-id">
+        <span class="rsh-heart" aria-hidden="true">🔐</span>
+        <div>
+          <h3 id="resAdminTitle">관리자 업로드</h3>
+          <p id="resAdminSub">사장님만 자료를 올리고 관리할 수 있습니다</p>
+        </div>
+      </div>
+      <button class="res-x" type="button" data-admin-close aria-label="닫기">✕</button>
+    </div>
+    <div class="res-sheet-body">
+      <div id="resAuthView">
+        <div class="res-auth-note">GitHub 개인 액세스 토큰(PAT)으로 본인 확인을 합니다. 토큰은 <b>이 브라우저에만</b> 저장되고, GitHub 외의 곳으로 보내지 않습니다.</div>
+        <ol class="res-steps">
+          <li>
+            <b>토큰 만들기</b> — <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=KSDSL-Admin" target="_blank" rel="noopener">github.com/settings/tokens/new</a> 에서 <code>repo</code> 권한을 체크하고 생성합니다.
+            <span>Fine-grained 토큰이면 이 저장소의 <b>Contents: Read and write</b> 권한을 주세요.</span>
+          </li>
+          <li><b>토큰 복사</b> — <code>ghp_…</code> 로 시작하는 값을 복사합니다. 창을 닫으면 다시 볼 수 없습니다.</li>
+          <li><b>아래에 붙여넣기</b> — 저장 후 <code>sarangline-blip/ksdsl-web</code> 쓰기 권한이 확인되면 업로드 화면이 열립니다.</li>
+        </ol>
+        <div class="fld">
+          <label for="resToken">GitHub 토큰 (PAT)</label>
+          <input type="password" id="resToken" placeholder="ghp_..." autocomplete="off" spellcheck="false">
+        </div>
+        <div class="res-auth-actions">
+          <button class="btn btn--primary" id="resTokenSave" type="button">토큰 저장 · 확인</button>
+          <a class="btn btn--ghost" href="https://github.com/settings/tokens/new?scopes=repo&amp;description=KSDSL-Admin" target="_blank" rel="noopener">토큰 만들기</a>
+        </div>
+        <p class="res-status" id="resAuthMsg" role="status"></p>
+      </div>
+
+      <div id="resUploadView" hidden>
+        <div class="res-admin-bar">
+          <span class="res-chip">sarangline-blip/ksdsl-web</span>
+          <span class="res-admin-state" id="resAdminWho">관리자 확인됨</span>
+          <button class="btn btn--ghost btn--sm" id="resLogout" type="button">로그아웃(토큰 삭제)</button>
+        </div>
+        <form id="resUploadForm" novalidate>
+          <div class="res-form-grid">
+            <div class="fld">
+              <label for="resUpCat">분류</label>
+              <select id="resUpCat">
+                <option value="lisp">❤ LISP — 리습 · 자동화</option>
+                <option value="tekla">❤ TEKLA — 속성 · BOM</option>
+                <option value="cad">❤ CAD — 팁 · 설정</option>
+                <option value="shop">❤ SHOP DWG — 샘플 · 협의자료</option>
+                <option value="photo">🎈 사진 — 현장 · 제작</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label for="resUpTitle">자료 이름</label>
+              <input type="text" id="resUpTitle" placeholder="예: SL-BT.lsp" maxlength="120">
+            </div>
+          </div>
+          <div class="fld" style="margin-top:12px">
+            <label for="resUpDesc">설명</label>
+            <input type="text" id="resUpDesc" placeholder="예: 캐드 2007 블록 문자 수정 리습" maxlength="200">
+          </div>
+          <label class="res-drop" id="resDrop">
+            <input type="file" id="resUpFile" hidden>
+            <span class="rd-ico" aria-hidden="true">📎</span>
+            <span class="rd-txt" id="resDropTxt">파일을 끌어다 놓거나 눌러서 선택 (최대 20MB)</span>
+          </label>
+          <label class="res-inline-chk"><input type="checkbox" id="resDelFileChk"><span>자료를 삭제할 때 GitHub의 파일도 함께 삭제</span></label>
+          <div class="res-upload-actions">
+            <button class="btn btn--primary" id="resUploadBtn" type="submit">GitHub에 업로드</button>
+            <span class="tiny muted">업로드 후 홈페이지 반영까지 1~2분 걸릴 수 있습니다.</span>
+          </div>
+          <p class="res-status" id="resUploadMsg" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="res-lightbox" id="resLightbox" hidden>
+  <button class="res-x res-lb-x" type="button" data-lb-close aria-label="닫기">✕</button>
+  <img id="resLightboxImg" alt="자료 사진 크게 보기">
+</div>
 
 <div class="toast" id="toast" role="status" aria-live="polite">
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m4 12.5 5 5L20 6.5"/></svg>
@@ -2093,7 +2519,7 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
   });
 
   // 현재 섹션 표시
-  var sections = ['home', 'about', 'catalog', 'rates', 'estimate', 'project', 'faq', 'contact']
+  var sections = ['home', 'about', 'catalog', 'rates', 'estimate', 'resources', 'project', 'faq', 'contact']
     .map(function (id) { return document.getElementById(id); }).filter(Boolean);
   var navLinks = $$('#nav a');
   function markActive() {
@@ -2127,6 +2553,545 @@ table.rate .rt-act{text-align:right;white-space:nowrap}
   } else {
     $$('.reveal').forEach(function (el) { el.classList.add('in'); });
   }
+
+  /* ============================================================
+     8. 자료실 (Resource Center) — 하트·풍선 카드 · GitHub 관리자 업로드
+     ============================================================ */
+  var RES_CATS = {
+    lisp: { name: 'LISP', kor: 'AutoCAD 리습 · 자동화 명령어' },
+    tekla: { name: 'TEKLA', kor: 'Tekla 속성 · 컴포넌트 · BOM' },
+    cad: { name: 'CAD', kor: 'AutoCAD 팁 · 설정 · 템플릿' },
+    shop: { name: 'SHOP DWG', kor: '철골 샘플도면 · 협의자료' },
+    photo: { name: '사진', kor: '현장 · 제작 · 접합부 사진' }
+  };
+  var RES_ORDER = ['lisp', 'photo', 'tekla', 'cad', 'shop'];
+  var RES_DEFAULT = {
+    version: 1,
+    updated: '2026-11-25',
+    items: [{
+      id: 'lisp-sl-bt', cat: 'lisp', title: 'SL-BT.lsp',
+      desc: '캐드 2007 블록 문자 수정 리습 — 블록을 깨지 않고 문자만 교체 (명령어 SL-BT)',
+      file: 'files/lisp/SL-BT.lsp', size: 29475, date: '2026-11-25'
+    }]
+  };
+  var RES_REPO = 'sarangline-blip/ksdsl-web';
+  var RES_BRANCH = 'main';
+  var RES_PAT_KEY = 'ksdsl_gh_pat';
+  var RES_MAX = 20 * 1024 * 1024;
+  var resState = {
+    items: RES_DEFAULT.items.slice(), updated: RES_DEFAULT.updated,
+    admin: false, cat: null, token: null, file: null, tree: null
+  };
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+  function fmtSize(b) {
+    b = +b || 0;
+    if (!b) return '—';
+    if (b < 1024) return b + ' B';
+    var kb = b / 1024;
+    if (kb < 1024) return (kb < 10 ? kb.toFixed(1) : String(Math.round(kb))) + ' KB';
+    return (kb / 1024).toFixed(1) + ' MB';
+  }
+  function fmtDate(d) { return d ? String(d).replace(/-/g, '.') : '—'; }
+  function safeUrl(u) {
+    u = String(u || '');
+    return /^(files\/|https:\/\/)/.test(u) ? u : '';
+  }
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  }
+
+  function resUpdateCards() {
+    var counts = {};
+    resState.items.forEach(function (it) { counts[it.cat] = (counts[it.cat] || 0) + 1; });
+    RES_ORDER.forEach(function (cat) {
+      var n = counts[cat] || 0;
+      var badge = $('.rh-count[data-count="' + cat + '"]');
+      if (badge) badge.textContent = n + '개';
+      var btn = $('.res-heart[data-cat="' + cat + '"]');
+      if (btn) btn.setAttribute('aria-label', RES_CATS[cat].name + ' 자료실 열기 — 자료 ' + n + '개');
+    });
+    var total = $('#resTotal');
+    if (total) total.textContent = resState.items.length;
+    var upd = $('#resUpdated');
+    if (upd) upd.textContent = fmtDate(resState.updated || today());
+  }
+
+  function resItemHTML(it) {
+    var fname = String(it.file || '').split('/').pop();
+    var url = safeUrl(it.file);
+    var ext = (fname.split('.').pop() || 'file').toLowerCase();
+    var isImg = /^(jpg|jpeg|png|gif|webp|svg|avif)$/.test(ext);
+    var thumbRaw = it.thumb || (isImg ? it.file : '');
+    var thumb = safeUrl(thumbRaw);
+    var media = thumb
+      ? '<button class="ri-thumb" type="button" data-res-photo="' + esc(thumb) + '" aria-label="' + esc(it.title) + ' 크게 보기"><img src="' + esc(thumb) + '" alt="" loading="lazy"></button>'
+      : '<span class="ri-ico" aria-hidden="true">' + esc(ext) + '</span>';
+    return '<div class="res-item" data-res-id="' + esc(it.id) + '">' + media +
+      '<div class="ri-main">' +
+        '<div class="ri-title">' + esc(it.title) + '<small>' + esc(ext.toUpperCase()) + '</small></div>' +
+        (it.desc ? '<p class="ri-desc">' + esc(it.desc) + '</p>' : '') +
+        '<div class="ri-meta">' + fmtSize(it.size) + ' · ' + esc(fmtDate(it.date)) + '</div>' +
+      '</div>' +
+      '<div class="ri-acts">' +
+        (url ? '<a class="btn btn--soft btn--sm" href="' + esc(url) + '" download="' + esc(fname) + '">다운로드</a>' : '') +
+        (resState.admin ? '<button class="ri-del" type="button" data-res-del="' + esc(it.id) + '">삭제</button>' : '') +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderResList() {
+    var box = $('#resList');
+    if (!box || !resState.cat) return;
+    var cat = resState.cat;
+    var items = resState.items.filter(function (it) { return it.cat === cat; });
+    items.sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); });
+    if (!items.length) {
+      box.innerHTML = '<div class="res-empty"><b>' + esc(RES_CATS[cat].name) + '</b> 자료를 준비 중입니다.<br>' +
+        (cat === 'photo' ? '현장·제작·접합부 사진이 정리되는 대로 올리겠습니다.' : '곧 유용한 파일을 채워 올리겠습니다.') + '</div>';
+    } else {
+      box.innerHTML = items.map(resItemHTML).join('');
+    }
+    var note = $('#resCatNote');
+    if (note) note.textContent = items.length + '개 자료 · 필요하면 문의로 요청해 주세요.';
+  }
+
+  function openResCat(cat) {
+    if (!RES_CATS[cat]) return;
+    resState.cat = cat;
+    $('#resCatTitle').textContent = RES_CATS[cat].name;
+    $('#resCatSub').textContent = RES_CATS[cat].kor;
+    $('#resCatIcon').textContent = cat === 'photo' ? '🎈' : '❤';
+    renderResList();
+    resOpenModal('#resCatModal');
+  }
+
+  var resLastFocus = null;
+  function resAnyModalOpen() {
+    return $$('.res-modal').some(function (m) { return !m.hidden; });
+  }
+  function resOpenModal(sel) {
+    var m = $(sel);
+    if (!m || !m.hidden) return;
+    resLastFocus = document.activeElement;
+    m.hidden = false;
+    document.body.classList.add('res-lock');
+    var f = m.querySelector('input:not([type="hidden"]),select,textarea,button,a');
+    setTimeout(function () { if (f) f.focus({ preventScroll: true }); }, 40);
+  }
+  function resCloseModal(m) {
+    if (!m || m.hidden) return;
+    m.hidden = true;
+    if (!resAnyModalOpen() && $('#resLightbox').hidden) document.body.classList.remove('res-lock');
+    if (resLastFocus && resLastFocus.focus) { try { resLastFocus.focus({ preventScroll: true }); } catch (e) {} }
+  }
+
+  document.addEventListener('click', function (e) {
+    var heart = e.target.closest ? e.target.closest('.res-heart[data-cat]') : null;
+    if (heart) { openResCat(heart.getAttribute('data-cat')); return; }
+    var closer = e.target.closest ? e.target.closest('[data-res-close],[data-admin-close],[data-lb-close]') : null;
+    if (closer) {
+      var lb = closer.closest('.res-lightbox');
+      if (lb) { lb.hidden = true; if (!resAnyModalOpen()) document.body.classList.remove('res-lock'); }
+      else resCloseModal(closer.closest('.res-modal'));
+      return;
+    }
+    var del = e.target.closest ? e.target.closest('[data-res-del]') : null;
+    if (del) { deleteResItem(del.getAttribute('data-res-del')); return; }
+    var ph = e.target.closest ? e.target.closest('[data-res-photo]') : null;
+    if (ph) {
+      var img = $('#resLightboxImg');
+      img.src = ph.getAttribute('data-res-photo');
+      $('#resLightbox').hidden = false;
+      document.body.classList.add('res-lock');
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var lb = $('#resLightbox');
+    if (lb && !lb.hidden) { lb.hidden = true; if (!resAnyModalOpen()) document.body.classList.remove('res-lock'); return; }
+    var open = $$('.res-modal').filter(function (m) { return !m.hidden; });
+    if (open.length) resCloseModal(open[open.length - 1]);
+  });
+
+  $('#resLightbox').addEventListener('click', function (e) {
+    if (e.target !== this) return;
+    this.hidden = true;
+    if (!resAnyModalOpen()) document.body.classList.remove('res-lock');
+  });
+
+  /* ---------- GitHub API helpers ---------- */
+  function ghFetch(path, opts) {
+    opts = opts || {};
+    opts.headers = Object.assign({
+      'Authorization': 'Bearer ' + (resState.token || ''),
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    }, opts.headers || {});
+    return fetch('https://api.github.com' + path, opts).then(function (r) {
+      return r.text().then(function (t) {
+        var j = null;
+        try { j = t ? JSON.parse(t) : null; } catch (err) { j = null; }
+        if (!r.ok) {
+          var err = new Error((j && j.message) || ('GitHub 오류 HTTP ' + r.status));
+          err.status = r.status; err.body = j;
+          throw err;
+        }
+        return j;
+      });
+    });
+  }
+  function encPath(p) { return String(p).split('/').map(encodeURIComponent).join('/'); }
+  function getContent(path) {
+    return ghFetch('/repos/' + RES_REPO + '/contents/' + encPath(path) + '?ref=' + RES_BRANCH);
+  }
+  function putContent(path, b64, message, sha) {
+    var body = { message: message, content: b64, branch: RES_BRANCH };
+    if (sha) body.sha = sha;
+    return ghFetch('/repos/' + RES_REPO + '/contents/' + encPath(path), {
+      method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
+    });
+  }
+  function putWithRetry(path, b64, message, sha) {
+    return putContent(path, b64, message, sha).catch(function (err) {
+      if (err.status === 409 || err.status === 422) {
+        return getContent(path).then(function (cur) {
+          return putContent(path, b64, message, cur && cur.sha);
+        });
+      }
+      throw err;
+    });
+  }
+  function deleteContent(path, sha, message) {
+    return ghFetch('/repos/' + RES_REPO + '/contents/' + encPath(path), {
+      method: 'DELETE', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: message, sha: sha, branch: RES_BRANCH })
+    });
+  }
+  function b64ToStr(b64) {
+    var bin = atob(String(b64 || '').replace(/\s/g, ''));
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder('utf-8').decode(bytes);
+  }
+  function strToB64(s) {
+    var bytes = new TextEncoder().encode(s), bin = '';
+    for (var i = 0; i < bytes.length; i += 0x8000) {
+      bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    }
+    return btoa(bin);
+  }
+  function ghErrorText(err) {
+    if (err && err.status === 401) return '토큰이 올바르지 않습니다. 다시 확인해 주세요.';
+    if (err && err.status === 403) return '권한이 부족합니다. 토큰의 repo(Contents: Read and write) 권한을 확인해 주세요.';
+    if (err && err.status === 404) return '저장소나 파일을 찾을 수 없습니다. (sarangline-blip/ksdsl-web)';
+    if (err && (err.status === 409 || err.status === 422)) return 'GitHub 저장 충돌입니다. 잠시 후 다시 시도해 주세요.';
+    if (err && /Failed to fetch|NetworkError|Load failed|Network request failed/i.test(err.message || '')) return '네트워크에 연결할 수 없습니다. 연결을 확인해 주세요.';
+    return (err && err.message) || '알 수 없는 오류가 발생했습니다.';
+  }
+  function safeName(n) {
+    return String(n).replace(/[\\/:*?"<>|#%{}^~\[\]`]/g, '_').replace(/\s+/g, '_')
+      .replace(/_+/g, '_').replace(/^[_.]+/, '').slice(-120) || 'file';
+  }
+
+  /* ---------- 관리자 인증 ---------- */
+  function getToken() { try { return localStorage.getItem(RES_PAT_KEY) || ''; } catch (e) { return ''; } }
+  function setToken(t) {
+    try { if (t) localStorage.setItem(RES_PAT_KEY, t); else localStorage.removeItem(RES_PAT_KEY); } catch (e) {}
+  }
+  function resAuthMsg(text, kind) {
+    var el = $('#resAuthMsg');
+    el.textContent = text || '';
+    el.className = 'res-status' + (kind ? ' is-' + kind : '');
+  }
+  function resUploadMsg(text, kind) {
+    var el = $('#resUploadMsg');
+    el.textContent = text || '';
+    el.className = 'res-status' + (kind ? ' is-' + kind : '');
+  }
+
+  function setAdmin(on) {
+    resState.admin = !!on;
+    document.body.classList.toggle('res-admin', resState.admin);
+    $('#resAdminBtn').textContent = resState.admin ? '🔓 관리자 모드' : '🔐 관리자 업로드';
+    if (resState.cat) renderResList();
+  }
+
+  function showAuthView() {
+    $('#resAuthView').hidden = false;
+    $('#resUploadView').hidden = true;
+    setAdmin(false);
+  }
+  function showUploadView() {
+    $('#resAuthView').hidden = true;
+    $('#resUploadView').hidden = false;
+    setAdmin(true);
+  }
+
+  function verifyToken() {
+    var t = resState.token || getToken();
+    if (!t) { showAuthView(); resAuthMsg('토큰을 입력해 주세요.', 'err'); return Promise.resolve(false); }
+    resState.token = t;
+    resAuthMsg('권한을 확인하는 중…');
+    return ghFetch('/repos/' + RES_REPO).then(function (repo) {
+      if (!repo || !repo.permissions || repo.permissions.push !== true) {
+        var e = new Error('이 토큰은 읽기 전용입니다. repo 권한(Contents: Read and write)을 확인해 주세요.');
+        e.status = 403; throw e;
+      }
+      return ghFetch('/repos/' + RES_REPO + '/git/trees/' + RES_BRANCH + '?recursive=1').then(function (tree) {
+        var map = {};
+        ((tree && tree.tree) || []).forEach(function (x) { if (x.type === 'blob') map[x.path] = x.sha; });
+        resState.tree = map;
+      }).catch(function () { resState.tree = null; });
+    }).then(function () {
+      resAuthMsg('');
+      if ($('#resToken')) $('#resToken').value = '';
+      showUploadView();
+      $('#resAdminSub').textContent = '관리자로 확인되었습니다 — 자료를 올리거나 삭제할 수 있습니다';
+      return true;
+    }).catch(function (err) {
+      var authFail = err && (err.status === 401 || err.status === 403 || err.status === 404);
+      if (authFail) { setToken(''); resState.token = null; }
+      showAuthView();
+      resAuthMsg(ghErrorText(err) + (authFail ? '' : ' (토큰은 지우지 않았습니다. 다시 확인해 주세요.)'), 'err');
+      return false;
+    });
+  }
+
+  $('#resAdminBtn').addEventListener('click', function () {
+    resOpenModal('#resAdminModal');
+    var t = resState.token || getToken();
+    if (t) { resState.token = t; verifyToken(); }
+    else { showAuthView(); resAuthMsg(''); }
+  });
+
+  $('#resTokenSave').addEventListener('click', function () {
+    var t = $('#resToken').value.trim();
+    if (!t) { resAuthMsg('토큰을 입력해 주세요.', 'err'); $('#resToken').focus(); return; }
+    resState.token = t;
+    setToken(t);
+    verifyToken().then(function (ok) {
+      if (ok) { toast('관리자로 확인되었습니다'); $('#resUpTitle').focus(); }
+    });
+  });
+  $('#resToken').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); $('#resTokenSave').click(); }
+  });
+  $('#resLogout').addEventListener('click', function () {
+    setToken(''); resState.token = null; setAdmin(false);
+    $('#resAdminSub').textContent = '사장님만 자료를 올리고 관리할 수 있습니다';
+    showAuthView(); resAuthMsg('토큰을 삭제했습니다. 다시 업로드하려면 토큰을 입력해 주세요.', 'ok');
+    toast('관리자 토큰을 삭제했습니다');
+  });
+
+  /* ---------- 업로드 ---------- */
+  function resetDrop() {
+    var t = $('#resDropTxt');
+    if (t) t.textContent = '파일을 끌어다 놓거나 눌러서 선택 (최대 20MB)';
+    var i = $('#resUpFile'); if (i) i.value = '';
+    resState.file = null;
+  }
+  function pickResFile(f) {
+    if (!f) return;
+    if (f.size > RES_MAX) {
+      resUploadMsg('20MB를 넘는 파일은 올릴 수 없습니다. (' + fmtSize(f.size) + ')', 'err');
+      resetDrop(); return;
+    }
+    resState.file = f;
+    $('#resDropTxt').innerHTML = '<span class="rd-file">' + esc(f.name) + '</span> · ' + fmtSize(f.size);
+    resUploadMsg('');
+    var title = $('#resUpTitle');
+    if (title && !title.value.trim()) title.value = f.name.replace(/\.[^.]+$/, '');
+    var ext = (f.name.split('.').pop() || '').toLowerCase();
+    var cat = $('#resUpCat');
+    if (cat && !cat.dataset.touched) {
+      if (/^(lsp|vlx|fas|dvb|scr)$/.test(ext)) cat.value = 'lisp';
+      else if (/^(jpg|jpeg|png|gif|webp|avif)$/.test(ext)) cat.value = 'photo';
+      else if (/^(dwg|dxf|pdf|zip|7z)$/.test(ext)) cat.value = 'shop';
+    }
+  }
+  $('#resUpCat').addEventListener('change', function () { this.dataset.touched = '1'; });
+  $('#resUpFile').addEventListener('change', function () { pickResFile(this.files && this.files[0]); });
+  (function () {
+    var drop = $('#resDrop');
+    if (!drop) return;
+    ['dragenter', 'dragover'].forEach(function (ev) {
+      drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-over'); });
+    });
+    ['dragleave', 'drop'].forEach(function (ev) {
+      drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('is-over'); });
+    });
+    drop.addEventListener('drop', function (e) {
+      var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      if (f) pickResFile(f);
+    });
+  })();
+
+  function readB64(file) {
+    return new Promise(function (resolve, reject) {
+      var r = new FileReader();
+      r.onload = function () { var s = String(r.result || ''); resolve(s.slice(s.indexOf(',') + 1)); };
+      r.onerror = function () { reject(new Error('파일을 읽을 수 없습니다.')); };
+      r.readAsDataURL(file);
+    });
+  }
+
+  function applyResData(data) {
+    resState.items = Array.isArray(data.items) ? data.items.filter(function (i) { return i && i.cat && i.file; }) : [];
+    resState.updated = data.updated || today();
+    resUpdateCards();
+    if (resState.cat) renderResList();
+  }
+
+  function fileSha(path) {
+    if (!resState.tree) return undefined;
+    return Object.prototype.hasOwnProperty.call(resState.tree, path) ? resState.tree[path] : null;
+  }
+  function rememberSha(path, sha) {
+    if (resState.tree && sha) resState.tree[path] = sha;
+  }
+
+  function updateResIndex(mutate) {
+    var attempt = 0;
+    function run() {
+      attempt++;
+      var known = fileSha('resources.json');
+      var curPromise;
+      if (known === null) {
+        curPromise = Promise.resolve(null);
+      } else {
+        curPromise = getContent('resources.json').then(function (cur) {
+          return cur ? { content: cur.content, sha: known || cur.sha } : null;
+        }).catch(function (err) {
+          if (err.status === 404) return null;
+          throw err;
+        });
+      }
+      return curPromise.then(function (cur) {
+        var data = cur ? JSON.parse(b64ToStr(cur.content)) : {
+          version: 1,
+          items: RES_DEFAULT.items.filter(function (it) {
+            return !resState.tree || Object.prototype.hasOwnProperty.call(resState.tree, it.file);
+          })
+        };
+        if (typeof data !== 'object' || data === null) data = { version: 1, items: [] };
+        if (!Array.isArray(data.items)) data.items = [];
+        mutate(data);
+        data.version = data.version || 1;
+        data.updated = today();
+        return putContent('resources.json', strToB64(JSON.stringify(data, null, 2)), '자료실 목록 갱신', cur && cur.sha)
+          .then(function (res) {
+            rememberSha('resources.json', res && res.content && res.content.sha);
+            applyResData(data);
+            return data;
+          });
+      }).catch(function (err) {
+        if ((err.status === 409 || err.status === 422) && attempt < 2) return run();
+        throw err;
+      });
+    }
+    return run();
+  }
+
+  $('#resUploadForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!resState.admin) { resUploadMsg('먼저 관리자 인증을 해 주세요.', 'err'); return; }
+    var cat = $('#resUpCat').value;
+    var title = $('#resUpTitle').value.trim();
+    var desc = $('#resUpDesc').value.trim();
+    var f = resState.file;
+    if (!RES_CATS[cat]) { resUploadMsg('분류를 선택해 주세요.', 'err'); return; }
+    if (!f) { resUploadMsg('업로드할 파일을 선택해 주세요.', 'err'); return; }
+    if (f.size > RES_MAX) { resUploadMsg('20MB를 넘는 파일은 올릴 수 없습니다.', 'err'); return; }
+    var btn = $('#resUploadBtn');
+    btn.disabled = true;
+    resUploadMsg('파일 업로드 중…');
+    var fname = safeName(f.name);
+    var path = 'files/' + cat + '/' + fname;
+    readB64(f).then(function (b64) {
+      var known = fileSha(path);
+      var shaPromise = known !== undefined ? Promise.resolve(known)
+        : getContent(path).then(function (cur) { return cur && cur.sha; }).catch(function (err) {
+            if (err.status === 404) return null;
+            throw err;
+          });
+      return shaPromise.then(function (sha) {
+        return putWithRetry(path, b64, '자료실 업로드: ' + (title || fname) + ' (' + cat + ')', sha)
+          .then(function (res) { rememberSha(path, res && res.content && res.content.sha); });
+      });
+    }).then(function () {
+      resUploadMsg('목록(resources.json) 갱신 중…');
+      return updateResIndex(function (data) {
+        data.items = data.items.filter(function (x) { return x.file !== path; });
+        data.items.push({
+          id: 'r' + Date.now(), cat: cat, title: title || fname, desc: desc,
+          file: path, size: f.size, date: today()
+        });
+      });
+    }).then(function () {
+      resUploadMsg('✅ 업로드 완료 — 홈페이지 반영까지 1~2분 걸릴 수 있습니다.', 'ok');
+      toast('자료를 GitHub에 업로드했습니다');
+      resState.file = null;
+      $('#resUploadForm').reset();
+      resetDrop();
+      $('#resUpCat').dataset.touched = '';
+    }).catch(function (err) {
+      resUploadMsg('업로드 실패 — ' + ghErrorText(err), 'err');
+    }).then(function () {
+      btn.disabled = false;
+    });
+  });
+
+  function deleteResItem(id) {
+    var it = resState.items.filter(function (x) { return String(x.id) === String(id); })[0];
+    if (!it) return;
+    if (!window.confirm('「' + it.title + '」 자료를 목록에서 삭제할까요?')) return;
+    var alsoFile = $('#resDelFileChk').checked;
+    var indexDone = false;
+    resUploadMsg('삭제 중…');
+    updateResIndex(function (data) {
+      data.items = data.items.filter(function (x) { return String(x.id) !== String(id); });
+    }).then(function () {
+      indexDone = true;
+      if (!alsoFile || !it.file) return null;
+      var known = fileSha(it.file);
+      if (known === null) return null;
+      var shaPromise = known !== undefined ? Promise.resolve(known)
+        : getContent(it.file).then(function (cur) { return cur && cur.sha; }).catch(function (err) {
+            if (err.status === 404) return null;
+            throw err;
+          });
+      return shaPromise.then(function (sha) {
+        if (!sha) return null;
+        return deleteContent(it.file, sha, '자료실 파일 삭제: ' + it.title).then(function () {
+          if (resState.tree) delete resState.tree[it.file];
+        });
+      });
+    }).then(function () {
+      toast(alsoFile ? '자료와 파일을 삭제했습니다' : '목록에서 삭제했습니다');
+      resUploadMsg('삭제 완료.', 'ok');
+    }).catch(function (err) {
+      resUploadMsg((indexDone ? '목록에서는 삭제했지만 파일 삭제는 실패했습니다 — ' : '삭제 실패 — ') + ghErrorText(err), 'err');
+    });
+  }
+
+  /* ---------- 목록 불러오기 (실패해도 기본 자료 유지) ---------- */
+  (function loadRes() {
+    resUpdateCards();
+    if (location.protocol === 'file:') return;
+    fetch('./resources.json?v=' + Date.now(), { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function (d) {
+      if (d && Array.isArray(d.items)) applyResData(d);
+    }).catch(function () { /* 기본 자료 유지 */ }).then(function () { resUpdateCards(); });
+  })();
 
   /* ---------------- init ---------------- */
   (function () {
