@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "updated": "2026-11-25",
+  "items": [
+    {
+      "id": "lisp-sl-bt",
+      "cat": "lisp",
+      "title": "SL-BT.lsp",
+      "desc": "캐드 2007 블록 문자 수정 리습 — 블록을 깨지 않고 문자만 교체 (명령어 SL-BT)",
+      "file": "files/lisp/SL-BT.lsp",
+      "size": 29475,
+      "date": "2026-11-25"
+    }
+  ]
+}
