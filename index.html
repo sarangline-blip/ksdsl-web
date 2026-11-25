@@ -86,6 +86,12 @@ input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
 .tiny{font-size:12px}
 .divider{height:1px;background:var(--line);border:0;margin:0}
 
+/* ---------- views (메뉴별 페이지 전환) ---------- */
+.view{display:none}
+.view.is-active{display:block;animation:viewIn .26s ease both}
+@keyframes viewIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view.is-active{animation:none}}
+
 /* ---------- header ---------- */
 .site-header{
   position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);
@@ -190,6 +196,49 @@ input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
 .hero-stats div:last-child{border-right:0}
 .hero-stats b{display:block;font-size:18px;letter-spacing:-.02em}
 .hero-stats span{font-size:12px;color:var(--muted)}
+
+/* ---------- home quick menu ---------- */
+.home-quick{
+  padding:62px 0 76px;border-bottom:1px solid var(--line-2);
+  background:linear-gradient(180deg,#fff 0%,#f6faff 52%,#f9fbff 100%);
+}
+.quick-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px 26px;flex-wrap:wrap;margin-bottom:26px}
+.quick-head .kicker{margin-bottom:8px}
+.quick-head h2{font-size:clamp(22px,2.7vw,30px)}
+.quick-note{font-size:13px;color:var(--muted);max-width:360px;line-height:1.65}
+.quick-note b{color:var(--ink-2)}
+.qgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.qcard{
+  position:relative;display:flex;align-items:flex-start;gap:14px;overflow:hidden;
+  background:#fff;border:1px solid var(--line);border-radius:16px;padding:19px 20px 18px;
+  text-decoration:none;color:var(--ink);box-shadow:0 1px 2px rgba(17,24,39,.04);
+  transition:transform .22s,box-shadow .22s,border-color .22s;
+}
+.qcard::after{
+  content:"";position:absolute;right:-30px;bottom:-34px;width:104px;height:104px;border-radius:50%;
+  background:var(--steel-l);opacity:.5;transition:transform .3s,opacity .3s;
+}
+.qcard:hover{transform:translateY(-4px);border-color:var(--steel-b);text-decoration:none;
+  box-shadow:0 24px 40px -30px rgba(17,24,39,.55)}
+.qcard:hover::after{transform:scale(1.14);opacity:.8}
+.qcard > *{position:relative;z-index:1}
+.qcard .qi{
+  width:44px;height:44px;border-radius:13px;flex:none;display:flex;align-items:center;justify-content:center;
+  background:var(--steel-l);color:var(--steel-d);
+}
+.qcard .qc{min-width:0;padding-right:20px}
+.qcard .qk{display:block;font-size:10px;font-weight:800;letter-spacing:.15em;color:var(--steel);margin-bottom:4px}
+.qcard .qt{display:block;font-size:16px;font-weight:800;letter-spacing:-.02em;line-height:1.35;margin-bottom:4px}
+.qcard .qd{display:block;font-size:12.5px;color:var(--muted);line-height:1.55}
+.qcard .qgo{position:absolute;right:16px;top:18px;color:#c6d5e7;transition:transform .2s,color .2s;line-height:0}
+.qcard:hover .qgo{color:var(--steel);transform:translateX(2px)}
+.qcard--est .qi{background:#e9f6ef;color:#0f7b53}
+.qcard--est .qk{color:#0f7b53}
+.qcard--est::after{background:#e9f6ef}
+.qcard--res .qi{background:#fff3e6;color:#b4691f}
+.qcard--res .qk{color:#b4691f}
+.qcard--res::after{background:#fff1e0}
+.header-cta.is-active{background:var(--steel-d);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
 
 /* ---------- cards / about ---------- */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -639,6 +688,7 @@ body.res-lock{overflow:hidden}
   .res-heart{width:clamp(158px,21vw,214px)}
   .res-slot--cad .res-heart{width:clamp(170px,23vw,236px)}
   .res-slot--photo .res-heart{width:clamp(136px,18vw,184px)}
+  .qgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:940px){
   .hero-in{grid-template-columns:1fr;gap:34px;padding:56px 0 44px}
@@ -714,6 +764,9 @@ body.res-lock{overflow:hidden}
   .hero-in{padding:44px 0 36px}
   .res-top{align-items:flex-start;margin-bottom:22px}
   .res-sky{grid-template-columns:minmax(0,1fr);gap:10px}
+  .qgrid{grid-template-columns:1fr}
+  .home-quick{padding:44px 0 54px}
+  .quick-head{margin-bottom:20px}
   .res-slot{grid-column:1 !important;grid-row:auto !important;margin:0 !important}
   .res-guide{grid-column:1 !important;grid-row:auto !important;max-width:none;margin-top:16px}
   .res-heart{width:min(64vw,224px)}
@@ -745,7 +798,7 @@ body.res-lock{overflow:hidden}
 @media print{
   @page{margin:14mm}
   .reveal{opacity:1 !important;transform:none !important;transition:none !important}
-  .site-header,.site-footer,.to-top,.toast,.nav,.hero,.hero-figure,.hero-actions,.no-print,.res-admin-btn,.res-modal,.res-lightbox{display:none !important}
+  .site-header,.site-footer,.to-top,.toast,.nav,.hero,.hero-figure,.hero-actions,.home-quick,.no-print,.res-admin-btn,.res-modal,.res-lightbox{display:none !important}
   body{font-size:10.5pt;color:#000;background:#fff}
   .section{padding:14px 0;break-inside:avoid}
   .section--soft{background:#fff;border:0}
@@ -755,7 +808,7 @@ body.res-lock{overflow:hidden}
   .quote-top{background:#0d47a1 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .print-only{display:block}
   /* 견적서 모드: 견적 카드만 출력 */
-  body.printing-quote main > section{display:none !important}
+  body.printing-quote .view{display:none !important}
   body.printing-quote #estimate{display:block !important;padding:0}
   body.printing-quote #estimate .sec-head,
   body.printing-quote #estimate .panel,
@@ -785,18 +838,21 @@ body.res-lock{overflow:hidden}
       <a href="#rates">단가표</a>
       <a href="#estimate">AI 견적</a>
       <a href="#resources">자료실</a>
-      <a href="#project">실적</a>
+      <a href="#projects">실적</a>
       <a href="#faq">FAQ</a>
     </nav>
     <span class="draft-chip" title="1차 시안 문서입니다"><i></i><span>1차 시안 v0.1</span></span>
-    <a class="btn btn--primary btn--sm header-cta" href="#estimate">개략 견적 계산</a>
+    <a class="btn btn--primary btn--sm header-cta" id="headerCta" href="#contact">견적 문의</a>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="메뉴 열기">
       <i></i><i></i><i></i>
     </button>
   </div>
 </header>
 
-<main id="home">
+<main id="main">
+
+<!-- ============ HOME (기본 화면 · 메뉴를 누르면 그 페이지만 열림) ============ -->
+<div class="view is-active" id="home">
 
 <!-- ============ HERO ============ -->
 <section class="hero">
@@ -923,8 +979,79 @@ body.res-lock{overflow:hidden}
   </div>
 </section>
 
+<!-- ============ HOME QUICK MENU ============ -->
+<section class="home-quick" aria-labelledby="quickTitle">
+  <div class="wrap">
+    <div class="quick-head">
+      <div>
+        <span class="kicker">QUICK MENU</span>
+        <h2 id="quickTitle">무엇을 찾고 계세요?</h2>
+      </div>
+      <p class="quick-note">카드를 누르면 <b>그 내용만</b> 깔끔하게 열렸니다. 위 메뉴에서 언제든 옮겨 다닐 수 있어요.</p>
+    </div>
+    <div class="qgrid">
+      <a class="qcard" href="#catalog">
+        <span class="qi" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg></span>
+        <span class="qc">
+          <span class="qk">CATALOG</span>
+          <span class="qt">카탈로그 · 계산기</span>
+          <span class="qd">H형강·강관·철판 7종 규격을 실시간 중량과 간이 물량(BOM)으로</span>
+        </span>
+        <span class="qgo" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="qcard" href="#rates">
+        <span class="qi" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20.6 12.3 12.3 20.6a2 2 0 0 1-2.8 0l-6.1-6.1a2 2 0 0 1-.6-1.4V4.6a2 2 0 0 1 2-2h8.5a2 2 0 0 1 1.4.6l5.9 5.9a2 2 0 0 1 0 2.9z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg></span>
+        <span class="qc">
+          <span class="qk">STANDARD RATE</span>
+          <span class="qt">기준 단가표</span>
+          <span class="qd">20,000 ~ 60,000원/톤 · 다섯 구간과 가산 조건을 한 장에</span>
+        </span>
+        <span class="qgo" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="qcard qcard--est" href="#estimate">
+        <span class="qi" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2"/><rect x="7.5" y="6" width="9" height="3.5" rx=".8"/><path d="M8 13h2M14 13h2M8 17h2M14 17h2"/></svg></span>
+        <span class="qc">
+          <span class="qk">AI ESTIMATOR</span>
+          <span class="qt">AI 개략 견적</span>
+          <span class="qd">건물 유형과 규모만 넣으면 30초 안에 견적 범위·공기</span>
+        </span>
+        <span class="qgo" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="qcard qcard--res" href="#resources">
+        <span class="qi" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.4C12 20.4 3 14.6 3 8.6 3 5.6 5.2 3.4 7.8 3.4c1.9 0 3.3 1 4.2 2.3.9-1.3 2.3-2.3 4.2-2.3 2.6 0 4.8 2.2 4.8 5.2 0 6-9 11.8-9 11.8z"/></svg></span>
+        <span class="qc">
+          <span class="qk">RESOURCE</span>
+          <span class="qt">하트 · 풍선 자료실</span>
+          <span class="qd">리습·Tekla 속성·샘플도면을 회원가입 없이 바로</span>
+        </span>
+        <span class="qgo" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="qcard" href="#projects">
+        <span class="qi" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 20.5h18M5.5 20.5V7l6.5-4 6.5 4v13.5"/><path d="M9.5 10h2M9.5 13.5h2M13 10h2M13 13.5h2"/></svg></span>
+        <span class="qc">
+          <span class="qk">PROJECT</span>
+          <span class="qt">수행 · 협업 기록</span>
+          <span class="qd">삼성 평택, 미국 JOB, HyFo·CFT 물량 검토 기록</span>
+        </span>
+        <span class="qgo" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="qcard" href="#contact">
+        <span class="qi" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 4.5 3 11.2l6.2 2.3L11.4 20z"/><path d="M21 4.5 9.5 13.5"/></svg></span>
+        <span class="qc">
+          <span class="qk">CONTACT</span>
+          <span class="qt">견적 문의</span>
+          <span class="qd">도면 한 장만 보내주시면 범위와 공기를 잡아드립니다</span>
+        </span>
+        <span class="qgo" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /#home view -->
+
 <!-- ============ ABOUT ============ -->
-<section class="section" id="about">
+<section class="view section" id="about">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker">ABOUT KSD</span>
@@ -986,7 +1113,7 @@ body.res-lock{overflow:hidden}
 </section>
 
 <!-- ============ CATALOG ============ -->
-<section class="section section--soft" id="catalog">
+<section class="view section section--soft" id="catalog">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker">STEEL CATALOG &amp; WEIGHT</span>
@@ -1137,7 +1264,7 @@ body.res-lock{overflow:hidden}
 </section>
 
 <!-- ============ RATES ============ -->
-<section class="section" id="rates">
+<section class="view section" id="rates">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker">STANDARD RATE</span>
@@ -1254,7 +1381,7 @@ body.res-lock{overflow:hidden}
 </section>
 
 <!-- ============ ESTIMATOR ============ -->
-<section class="section section--soft" id="estimate">
+<section class="view section section--soft" id="estimate">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker">KSDSL AI ESTIMATOR</span>
@@ -1363,7 +1490,7 @@ body.res-lock{overflow:hidden}
 </section>
 
 <!-- ============ RESOURCES ============ -->
-<section class="section section--res" id="resources">
+<section class="view section section--res" id="resources">
   <div class="wrap">
     <div class="res-top">
       <div class="sec-head reveal">
@@ -1481,7 +1608,7 @@ body.res-lock{overflow:hidden}
 </section>
 
 <!-- ============ PROJECT ============ -->
-<section class="section" id="project">
+<section class="view section" id="projects">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker">PROJECT HISTORY</span>
@@ -1514,7 +1641,7 @@ body.res-lock{overflow:hidden}
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="section section--soft" id="faq">
+<section class="view section section--soft" id="faq">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker">FAQ</span>
@@ -1554,7 +1681,7 @@ body.res-lock{overflow:hidden}
 </section>
 
 <!-- ============ CONTACT ============ -->
-<section class="section" id="contact">
+<section class="view section" id="contact">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker">CONTACT</span>
@@ -1642,6 +1769,7 @@ body.res-lock{overflow:hidden}
           <li><a href="#catalog">철강재 카탈로그</a></li>
           <li><a href="#rates">기준 단가표</a></li>
           <li><a href="#estimate">개략 견적 계산</a></li>
+          <li><a href="#resources">자료실</a></li>
         </ul>
       </div>
       <div>
@@ -2223,8 +2351,8 @@ body.res-lock{overflow:hidden}
     if (!ton) { toast('먼저 부재를 담아 주세요'); return; }
     estModeSet('ton');
     $('#estTons').value = Math.max(1, Math.round(ton));
-    $('#estimate').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setTimeout(function () { $('#estCalc').click(); }, 420);
+    go('estimate');
+    setTimeout(function () { $('#estCalc').click(); }, 120);
     toast('물량 ' + Math.round(ton) + '톤으로 견적을 계산했습니다');
   });
 
@@ -2445,8 +2573,8 @@ body.res-lock{overflow:hidden}
     $('#coMsg').value = msg;
     $('#coMsg').style.borderColor = 'var(--steel)';
     setTimeout(function () { $('#coMsg').style.borderColor = ''; }, 1600);
-    $('#contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setTimeout(function () { $('#coName').focus({ preventScroll: true }); }, 520);
+    go('contact');
+    setTimeout(function () { $('#coName').focus({ preventScroll: true }); }, 160);
     toast('문의 내용에 견적 조건을 채웠습니다');
   });
 
@@ -2459,8 +2587,8 @@ body.res-lock{overflow:hidden}
       if (!BUILDINGS[t]) return;
       $('#estType').value = t;
       updateAreaHint();
-      $('#estimate').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(function () { $('#estCalc').click(); }, 420);
+      go('estimate');
+      setTimeout(function () { $('#estCalc').click(); }, 120);
       toast(BUILDINGS[t].name + ' 유형으로 견적을 계산했습니다');
     });
   });
@@ -2503,32 +2631,101 @@ body.res-lock{overflow:hidden}
   });
 
   /* ============================================================
-     7. 내비게이션 · 스크롤 · 등장 효과
+     7. 해시 라우터 — 메뉴별 페이지 전환 (#home #about #catalog #rates
+        #estimate #resources #projects #faq #contact)
      ============================================================ */
+  var VIEW_IDS = ['home', 'about', 'catalog', 'rates', 'estimate', 'resources', 'projects', 'faq', 'contact'];
+  var VIEW_ALIAS = { project: 'projects', projects: 'projects', home: 'home' };
+  var curView = null;
+
+  function viewFromHash() {
+    var h = String(location.hash || '').replace(/^#!?\/?/, '').trim();
+    if (!h) return 'home';
+    h = VIEW_ALIAS[h] || h;
+    return VIEW_IDS.indexOf(h) >= 0 ? h : 'home';
+  }
+
+  function scrollToTop() {
+    var html = document.documentElement;
+    var prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    html.style.scrollBehavior = prev;
+  }
+
+  function markNav(id) {
+    $$('#nav a').concat($$('.header-cta')).forEach(function (a) {
+      var href = String(a.getAttribute('href') || '').replace(/^#/, '');
+      var on = (VIEW_ALIAS[href] || href) === id;
+      a.classList.toggle('is-active', on);
+      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+  }
+
   var navToggle = $('#navToggle'), nav = $('#nav');
   navToggle.addEventListener('click', function () {
     var open = nav.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     navToggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
   });
-  $$('#nav a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      nav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
+  function closeMobileNav() {
+    if (!nav.classList.contains('open')) return;
+    nav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', '메뉴 열기');
+  }
+
+  function showView(id, opts) {
+    opts = opts || {};
+    if (VIEW_IDS.indexOf(id) < 0) id = 'home';
+    curView = id;
+    VIEW_IDS.forEach(function (v) {
+      var el = document.getElementById(v);
+      if (el) el.classList.toggle('is-active', v === id);
     });
+    markNav(id);
+    document.body.setAttribute('data-view', id);
+    // display:none 이던 사이 등장효과가 멈춰 보이지 않게 해당 화면의 reveal은 바로 켬
+    var cur = document.getElementById(id);
+    if (cur) $$('.reveal', cur).forEach(function (n) { n.classList.add('in'); });
+    if (opts.top !== false) scrollToTop();
+    var t = $('#toTop');
+    if (t) t.classList.remove('show');
+  }
+
+  // 다른 코드에서 화면을 바꿀 때 사용 (예: 단가표 → 견적, 물량 → 견적, 견적 → 문의)
+  function go(id) {
+    if (VIEW_IDS.indexOf(id) < 0) return;
+    if (viewFromHash() === id) showView(id);
+    else location.hash = id;
+  }
+
+  window.addEventListener('hashchange', function () {
+    showView(viewFromHash());
+    closeMobileNav();
   });
 
-  // 현재 섹션 표시
-  var sections = ['home', 'about', 'catalog', 'rates', 'estimate', 'resources', 'project', 'faq', 'contact']
-    .map(function (id) { return document.getElementById(id); }).filter(Boolean);
-  var navLinks = $$('#nav a');
-  function markActive() {
-    var y = window.scrollY + 120, current = null;
-    sections.forEach(function (s) { if (s.offsetTop <= y) current = s.id; });
-    navLinks.forEach(function (a) {
-      a.classList.toggle('is-active', a.getAttribute('href') === '#' + current);
-    });
-  }
+  // 같은 메뉴를 다시 눌러도 맨 위로, 예전 #project 링크는 #projects로 정리
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var raw = String(a.getAttribute('href') || '').slice(1);
+    if (!raw) return;
+    var id = VIEW_ALIAS[raw] || raw;
+    if (VIEW_IDS.indexOf(id) < 0) return;
+    if (raw !== id) {
+      e.preventDefault();
+      history.replaceState(null, '', '#' + id);
+      showView(id);
+      closeMobileNav();
+      return;
+    }
+    if (id === curView) {
+      e.preventDefault();
+      showView(id);
+    }
+    closeMobileNav();
+  });
 
   var toTop = $('#toTop');
   var ticking = false;
@@ -2536,8 +2733,7 @@ body.res-lock{overflow:hidden}
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(function () {
-      markActive();
-      toTop.classList.toggle('show', window.scrollY > 600);
+      toTop.classList.toggle('show', window.scrollY > 420);
       ticking = false;
     });
   }, { passive: true });
@@ -3104,7 +3300,8 @@ body.res-lock{overflow:hidden}
   plateUpdate();
   hyfoUpdate();
   updateAreaHint();
-  markActive();
+  showView(viewFromHash(), { top: false });
+  if (location.hash) scrollToTop();
 })();
 </script>
 </body>
